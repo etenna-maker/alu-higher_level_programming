@@ -20,3 +20,18 @@ Test with an empty list.
 >>> empty_list = MyList()
 >>> empty_list.print_sorted()
 []
+
+Test with negative numbers, unsorted.
+
+>>> neg_list = MyList()
+>>> neg_list.append(3)
+>>> neg_list.append(-7)
+>>> neg_list.append(0)
+>>> neg_list.append(-1)
+>>> neg_list.append(5)
+>>> print(neg_list)
+[3, -7, 0, -1, 5]
+>>> neg_list.print_sorted()
+[-7, -1, 0, 3, 5]
+>>> print(neg_list)
+[3, -7, 0, -1, 5]
