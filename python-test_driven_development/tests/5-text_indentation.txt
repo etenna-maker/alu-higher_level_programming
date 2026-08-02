@@ -58,3 +58,27 @@ Missing arguments raise a TypeError:
 >>> text_indentation()
 Traceback (most recent call last):
 TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+Non-string types raise a TypeError:
+
+::
+
+    >>> text_indentation([1, 2])
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    >>> text_indentation({"text": "hi"})
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+Consecutive special characters each get their own break:
+
+::
+
+    >>> text_indentation("Hi.?:")
+    Hi.
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>

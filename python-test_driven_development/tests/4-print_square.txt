@@ -56,3 +56,31 @@ Missing arguments raise a TypeError:
 >>> print_square()
 Traceback (most recent call last):
 TypeError: print_square() missing 1 required positional argument: 'size'
+
+Booleans are not accepted as a size:
+
+::
+
+    >>> print_square(True)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+Infinity is not an integer:
+
+::
+
+    >>> print_square(float('inf'))
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+Other types are rejected:
+
+::
+
+    >>> print_square([4])
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+    >>> print_square({"size": 4})
+    Traceback (most recent call last):
+    TypeError: size must be an integer
