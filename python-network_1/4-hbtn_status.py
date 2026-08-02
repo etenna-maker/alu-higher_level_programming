@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-"""Fetches https://alu-intranet.hbtn.io/status using the requests package."""
+"""Fetches a URL with requests and displays information about the body."""
 import requests
 
 
 if __name__ == "__main__":
-    r = requests.get('https://alu-intranet.hbtn.io/status')
+    url = "https://intranet.hbtn.io/status"
+    r = requests.get(url)
     print("Body response:")
     print("\t- type: {}".format(type(r.text)))
     print("\t- content: {}".format(r.text))
