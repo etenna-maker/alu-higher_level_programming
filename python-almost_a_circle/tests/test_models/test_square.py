@@ -279,3 +279,44 @@ class TestSquareToDictionary(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSquareCheckerCases(unittest.TestCase):
+    """Cover the remaining argument combinations for Square."""
+
+    def tearDown(self):
+        """Remove any file created by these tests."""
+        import os
+        try:
+            os.remove("Square.json")
+        except IOError:
+            pass
+        except OSError:
+            pass
+
+    def test_square_y_string(self):
+        """A string y is refused."""
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 2, "3")
+
+    def test_square_negative_size(self):
+        """A negative size is refused."""
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Square(-1)
+
+    def test_square_negative_x(self):
+        """A negative x is refused."""
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+            Square(1, -2)
+
+    def test_square_save_to_file_none(self):
+        """Saving None writes an empty list."""
+        Square.save_to_file(None)
+        with open("Square.json", "r") as a_file:
+            self.assertEqual(a_file.read(), "[]")
+
+    def test_square_save_to_file_empty(self):
+        """Saving an empty list writes an empty list."""
+        Square.save_to_file([])
+        with open("Square.json", "r") as a_file:
+            self.assertEqual(a_file.read(), "[]")
