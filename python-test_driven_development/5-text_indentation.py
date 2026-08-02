@@ -1,18 +1,19 @@
 #!/usr/bin/python3
-"""This module supplies one function, text_indentation.
+"""This module defines a function that indents text.
 
 text_indentation(text) prints a text and adds two new lines
-after each of the characters ., ? and :, removing any spaces
-at the beginning and the end of every printed line.
+after each of the characters ., ? and :, with no space at the
+beginning or the end of any printed line.
 """
 
 
 def text_indentation(text):
     """Print text with two new lines after each of ., ? and :.
 
-    text must be a string.
+    Raises:
+        TypeError: If text is not a string.
     """
-    if not isinstance(text, str):
+    if type(text) is not str:
         raise TypeError("text must be a string")
     i = 0
     while i < len(text):
