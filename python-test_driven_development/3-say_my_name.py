@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-"""This module supplies one function, say_my_name.
+"""This module defines a function that prints a person's full name.
 
-say_my_name(first_name, last_name) prints a greeting built
-from the two names it is given. Both names must be strings,
-and the last name is optional.
+say_my_name(first_name, last_name) prints a greeting built from
+the two names given. Both must be strings, last name is optional.
 """
 
 
 def say_my_name(first_name, last_name=""):
-    """Print "My name is <first name> <last name>".
+    """Print "My name is <first_name> <last_name>".
 
-    Both arguments must be strings.
+    Raises:
+        TypeError: If either first_name or last_name are not strings.
     """
-    if not isinstance(first_name, str):
+    if type(first_name) is not str:
         raise TypeError("first_name must be a string")
-    if not isinstance(last_name, str):
+    if type(last_name) is not str:
         raise TypeError("last_name must be a string")
     print("My name is {} {}".format(first_name, last_name))
