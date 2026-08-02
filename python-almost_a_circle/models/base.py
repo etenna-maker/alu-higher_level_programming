@@ -5,6 +5,7 @@ Base is the parent of every other class in this project. It manages
 the id attribute of all instances and provides the serialization and
 deserialization helpers shared by its subclasses.
 """
+import csv
 import json
 
 
@@ -67,6 +68,39 @@ class Base:
         try:
             with open(filename, "r") as a_file:
                 list_dicts = cls.from_json_string(a_file.read())
+                return [cls.create(**d) for d in list_dicts]
+        except IOError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Write the CSV representation of a list of objects to a file."""
+        filename = "{}.csv".format(cls.__name__)
+        with open(filename, "w", newline="") as a_file:
+            if list_objs is None or list_objs == []:
+                a_file.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    fields = ["id", "width", "height", "x", "y"]
+                else:
+                    fields = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(a_file, fieldnames=fields)
+                for obj in list_objs:
+                    writer.writerow(obj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Return a list of instances loaded from a CSV file."""
+        filename = "{}.csv".format(cls.__name__)
+        try:
+            with open(filename, "r", newline="") as a_file:
+                if cls.__name__ == "Rectangle":
+                    fields = ["id", "width", "height", "x", "y"]
+                else:
+                    fields = ["id", "size", "x", "y"]
+                reader = csv.DictReader(a_file, fieldnames=fields)
+                list_dicts = [dict([key, int(value)] for key, value in
+                              row.items()) for row in reader]
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
