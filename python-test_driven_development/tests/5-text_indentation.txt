@@ -1,0 +1,60 @@
+The ``5-text_indentation`` module
+=================================
+
+Using ``text_indentation``
+--------------------------
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+A period creates two new lines:
+
+>>> text_indentation("Hello. World")
+Hello.
+<BLANKLINE>
+World
+
+A question mark creates two new lines:
+
+>>> text_indentation("Are you there? Yes")
+Are you there?
+<BLANKLINE>
+Yes
+
+A colon creates two new lines:
+
+>>> text_indentation("Note: this is it")
+Note:
+<BLANKLINE>
+this is it
+
+Spaces after the character are removed:
+
+>>> text_indentation("First.        Second")
+First.
+<BLANKLINE>
+Second
+
+Text with no special characters is printed as is:
+
+>>> text_indentation("No special characters here")
+No special characters here
+
+An empty string prints nothing:
+
+>>> text_indentation("")
+
+A non-string raises a TypeError:
+
+>>> text_indentation(12)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+>>> text_indentation(None)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+Missing arguments raise a TypeError:
+
+>>> text_indentation()
+Traceback (most recent call last):
+TypeError: text_indentation() missing 1 required positional argument: 'text'
